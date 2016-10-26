@@ -99,7 +99,7 @@ namespace fodt2ANSI
                 int na = 0;
                 foreach (var node in p.DescendantNodes())
                 {
-                    if (na > 0)
+                    if (na >= 0)
                     {
                         //if (node.NodeType != XmlNodeType.Text)
                         //{
@@ -113,7 +113,9 @@ namespace fodt2ANSI
                         //Console.ForegroundColor = ConsoleColor.Yellow;
                         //Console.WriteLine("--------------------------------------------------------");
                         //Console.ResetColor();
+                        text += pStyle.GetANSI();
                         text+=BuildText(node, pStyle);
+                        text += pStyle.GetANSI();
                     }
                     na++;
                 }
@@ -156,7 +158,7 @@ namespace fodt2ANSI
                     {
                         System.Text.StringBuilder sb = new System.Text.StringBuilder();
                         sb.Append(' ', Int32.Parse(((XElement)node).Attributes().Where(x => x.Name.LocalName == "c").First().Value));
-                        return inheritStyle.GetANSI() + sb.ToString()/*+inheritStyle.GetANSI()*/;
+                        return /*inheritStyle.GetANSI() +*/ sb.ToString()/*+inheritStyle.GetANSI()*/;
                     }
                     catch { }
                 }
@@ -172,7 +174,7 @@ namespace fodt2ANSI
                     int na = 0;
                     foreach (var nodeNode in ((XElement)node).DescendantNodes())
                     {
-                        if (na > 0)
+                        if (na > -1)
                         {
                             ret += BuildText(nodeNode, pStyle);
 
@@ -187,15 +189,29 @@ namespace fodt2ANSI
 
         public string BashEscapeString(string s)
         {
-            return s.Replace("\\", "\\\\")
-                .Replace("\n", "\\n")
-                .Replace("\r", "\\r")
-                .Replace("\t", "\\t")
-                .Replace("\v", "\\v")
-                .Replace("\b", "\\b")
-                .Replace("\a", "\\a")
-                .Replace("\"", "\\\"")
-                .Replace("$", "\\$");
+            //return s.Replace(@"\", @"\\")
+            //    .Replace("\n", "\\n")
+            //    .Replace("\r", "\\r")
+            //    .Replace("\t", "\\t")
+            //    .Replace("\v", "\\v")
+            //    .Replace("\b", "\\b")
+            //    .Replace("\a", "\\a")
+            //    .Replace("\"", "\\\"")
+            //    .Replace("$", "\\$")
+            //    //.Replace("'", "\\'")
+            //    .Replace("+", "\\+")
+            //    //.Replace(".", "\\.")
+            //    .Replace("{", "\\{")
+            //    .Replace("`", "\\`")
+            //    .Replace("}", "\\}")
+            //    ;
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            foreach (char c in s)
+            {
+                sb.Append('\\');
+                sb.Append(c);
+            }
+            return sb.ToString();
         }
 
         public string GetInnerXml(XElement parent)

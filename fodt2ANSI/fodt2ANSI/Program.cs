@@ -58,10 +58,11 @@ namespace fodt2ANSI
             string ret = "";
             foreach (string s in ANSI)
             {
-                //ret += "printf \"";
-                ret+= s;
-                //ret += "\"";
-                ret += "\\n";
+                ret += "printf \"";
+                ret += s;
+                ret += "\"";
+                //ret += "\\n";
+                ret += Environment.NewLine;
             }
             new OutputBox(ret).ShowDialog();
         }
