@@ -5,11 +5,14 @@ using System.Xml;
 using System.Linq;
 using System.Collections.Generic;
 using fodt2ANSI.Fodt;
+using System.Text.RegularExpressions;
 
 namespace fodt2ANSI
 {
     public class FodtParser
     {
+        public static Regex rgxSpaceElem = new Regex("<text:s text:c=\"\\d+?\"([^>]|)+?\\/>");
+
         public XDocument doc = null;
         public List<FodtStyle> styles = new List<FodtStyle>();
 
@@ -90,9 +93,25 @@ namespace fodt2ANSI
                 string xml = GetInnerXml(p);
 
                 //explode spaces
+                var spaces = rgxSpaceElem.Matches(xml);
+                int off = 0;
+                foreach (Match space in spaces)
+                {
+                    try
+                    {
+                        int no = Int32.Parse(Parsing.GetBetween(space.Value, "\"", "\""));
+                        xml = xml.Remove(space.Index + off, space.Length);
+                        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                        sb.Append(' ', no);
+                        xml = xml.Insert(space.Index + off, sb.ToString());
+                        off -= space.Length - no;
+                    }
+                    catch
+                    {
+                    }
+                }
 
-
-                Console.WriteLine(GetInnerXml(p));
+                Console.WriteLine(xml);
                 Console.WriteLine(pStyle);
                 Console.WriteLine("------------------------------");
             }
