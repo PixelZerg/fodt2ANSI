@@ -9,6 +9,8 @@ namespace fodt2ANSI
 
         public static void Main(string[] args)
         {
+            Fodt.BashColour.serialize();
+
             ///home/pixelzerg/git/clannad/Raw Art/s1/f1.fodt
 
             //System.Xml.Linq.XDocument doc = new System.Xml.Linq.XDocument();
@@ -53,6 +55,15 @@ namespace fodt2ANSI
         {
             parser.ParseStyles();
             List<string> ANSI = parser.BuildANSI();
+            string ret = "";
+            foreach (string s in ANSI)
+            {
+                //ret += "printf \"";
+                ret+= s;
+                //ret += "\"";
+                ret += "\\n";
+            }
+            new OutputBox(ret).ShowDialog();
         }
     }
 }
