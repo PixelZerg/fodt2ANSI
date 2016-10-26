@@ -1,0 +1,5 @@
+/home/pixelzerg/git/fodt2ANSI/fodt2ANSI/fodt2ANSI/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/pixelzerg/git/fodt2ANSI/fodt2ANSI/fodt2ANSI/bin/Debug/fodt2ANSI.exe.mdb
+/home/pixelzerg/git/fodt2ANSI/fodt2ANSI/fodt2ANSI/bin/Debug/fodt2ANSI.exe
+/home/pixelzerg/git/fodt2ANSI/fodt2ANSI/fodt2ANSI/obj/x86/Debug/fodt2ANSI.exe
+/home/pixelzerg/git/fodt2ANSI/fodt2ANSI/fodt2ANSI/obj/x86/Debug/fodt2ANSI.exe.mdb
