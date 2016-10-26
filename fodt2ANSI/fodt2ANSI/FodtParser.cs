@@ -90,30 +90,33 @@ namespace fodt2ANSI
             foreach (XElement p in moo.Elements().Where(p=>p.Name.LocalName == "p"))
             {
                 FodtStyle pStyle = GetStyleByName(p.Attributes().Where(x => x.Name.LocalName == "style-name").First().Value);
-                string xml = GetInnerXml(p);
 
-                //explode spaces
-                var spaces = rgxSpaceElem.Matches(xml);
-                int off = 0;
-                foreach (Match space in spaces)
+                int na = 0;
+                foreach (var node in p.DescendantNodes())
                 {
-                    try
+                    if (na > 0)
                     {
-                        int no = Int32.Parse(Parsing.GetBetween(space.Value, "\"", "\""));
-                        xml = xml.Remove(space.Index + off, space.Length);
-                        System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                        sb.Append(' ', no);
-                        xml = xml.Insert(space.Index + off, sb.ToString());
-                        off -= space.Length - no;
+                        if (node.NodeType != XmlNodeType.Text)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                        }
+                        if (node.ToString().EndsWith("/>"))
+                        {
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                        }
+                        Console.WriteLine(node);
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("--------------------------------------------------------");
+                        Console.ResetColor();
                     }
-                    catch
-                    {
-                    }
+                    na++;
                 }
 
-                Console.WriteLine(xml);
-                Console.WriteLine(pStyle);
-                Console.WriteLine("------------------------------");
+                //Console.WriteLine(pXml);
+                //Console.WriteLine(pStyle);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("////////////////////////////////////////////////////////////////////////////////////////////////////");
+                Console.ResetColor();
             }
             return ret;
         }

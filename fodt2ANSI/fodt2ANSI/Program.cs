@@ -14,8 +14,9 @@ namespace fodt2ANSI
             //System.Xml.Linq.XDocument doc = new System.Xml.Linq.XDocument();
             string path = "";
             #if DEBUG
-            path = "/home/pixelzerg/git/clannad/Raw Art/s1/f1.fodt";
-            #else
+            //path = "/home/pixelzerg/git/clannad/Raw Art/s1/f1.fodt";
+            path = @"C:\Users\PixelZerg\Documents\GitHub\clannad\Raw Art\s1\f1.fodt";
+#else
             if (args.Length > 0)
             {
                 if (args[0] != "--help")
@@ -34,7 +35,7 @@ namespace fodt2ANSI
                 Console.Write("Enter the full path of the .fodt file: ");
                 path = Console.ReadLine();
             }
-            #endif
+#endif
 
             System.IO.FileInfo f = new System.IO.FileInfo(path);
             if (!f.Exists)

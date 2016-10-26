@@ -1,0 +1,5 @@
+C:\Users\PixelZerg\Documents\GitHub\fodt2ANSI\fodt2ANSI\fodt2ANSI\obj\x86\Debug\fodt2ANSI.exe
+C:\Users\PixelZerg\Documents\GitHub\fodt2ANSI\fodt2ANSI\fodt2ANSI\bin\Debug\fodt2ANSI.exe
+C:\Users\PixelZerg\Documents\GitHub\fodt2ANSI\fodt2ANSI\fodt2ANSI\bin\Debug\fodt2ANSI.pdb
+C:\Users\PixelZerg\Documents\GitHub\fodt2ANSI\fodt2ANSI\fodt2ANSI\obj\x86\Debug\fodt2ANSI.csprojResolveAssemblyReference.cache
+C:\Users\PixelZerg\Documents\GitHub\fodt2ANSI\fodt2ANSI\fodt2ANSI\obj\x86\Debug\fodt2ANSI.pdb
